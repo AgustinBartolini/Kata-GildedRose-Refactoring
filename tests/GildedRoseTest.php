@@ -36,6 +36,7 @@ class GildedRoseTest extends TestCase
 		GildedRose::updateQuality([$someItem]);
 
 		$this->assertEquals(0, $someItem->quality);
+		$this->assertEquals(1, $someItem->sellIn);
 	}
 
 	public function test_agedbrie_increase_quality()
@@ -101,5 +102,13 @@ class GildedRoseTest extends TestCase
 
 		$this->assertEquals(0, $backstage->quality);
 	}
-	
+
+	public function test_conjured_item_decrease()
+	{
+		$conjured = new Item("Item Conjured", 10, 10);
+
+		GildedRose::updateQuality([$conjured]);
+
+		$this->assertEquals(8, $conjured->quality);
+	}
 }
